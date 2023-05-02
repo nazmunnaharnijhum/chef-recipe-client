@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { FaFacebookSquare,FaTwitterSquare,FaInstagramSquare, FaYoutubeSquare, FaWhatsappSquare} from 'react-icons/fa';
 
 const Footer = () => {
     return (
@@ -28,7 +29,7 @@ const Footer = () => {
         <Col lg={4}>
         <div>
             <h4>Follow us</h4>
-           <h5></h5>
+           <h5><FaFacebookSquare/> <FaTwitterSquare/> <FaInstagramSquare/> <FaYoutubeSquare/> <FaWhatsappSquare/></h5>
            </div>
         </Col>
       </Row>
