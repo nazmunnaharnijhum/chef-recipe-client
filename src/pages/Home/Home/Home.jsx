@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
@@ -5,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import './Home.css';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 
-import { useLoaderData, useParams } from 'react-router-dom';
+import { Link, useLoaderData, useParams } from 'react-router-dom';
 import Banner from '../Banner/Banner';
 
 const Home = () => {
@@ -30,8 +31,9 @@ const Home = () => {
         
             <div className='card-container mx-auto'>
             {
-               chefs.map(chef => <Container style={{width:''}}
+               chefs.map(chef => <Container
                key={chef.id}
+               chef={chef}
                >
                 <Row>
                     <Col lg={1}></Col>
@@ -43,7 +45,7 @@ const Home = () => {
         <Card.Title>Years of Experience: {chef.years_of_experience}</Card.Title>
         <Card.Title>Number of Recipes: {chef.numbers_of_recipes}</Card.Title>
         <Card.Title>Likes: {chef.likes}</Card.Title>
-        <Button variant="secondary">View Recipes</Button>
+        <Link to={`/chefs/{${chef.id}}`}><Button variant="secondary">View Recipes</Button></Link>
       </Card.Body>
     </Card>
                     </Col>
