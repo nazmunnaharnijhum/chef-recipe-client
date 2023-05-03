@@ -4,13 +4,14 @@ import Header from '../pages/Shared/Header/Header';
 import Footer from '../pages/Shared/Footer/Footer';
 import { Col, Container, Row } from 'react-bootstrap';
 import Banner from '../pages/Home/Home/Banner/Banner';
+import { Outlet } from 'react-router-dom';
 
 const Main = () => {
     return (
         <div>
             <Header></Header>
             <Container>
-      <Row>
+            <Row>
         <Col lg={12}>
             <Banner></Banner>
         </Col>
@@ -18,13 +19,7 @@ const Main = () => {
       </Row>
       <Row>
         <Col lg={4}>
-            <h2>Card 1</h2>
-        </Col>
-        <Col lg={4}>
-            <h2>Card 2</h2>
-        </Col>
-        <Col lg={4}>
-            <h2>Card 3</h2>
+            <Outlet></Outlet>
         </Col>
       </Row>
     </Container>
