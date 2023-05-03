@@ -6,10 +6,10 @@ import { FaFacebookSquare,FaTwitterSquare,FaInstagramSquare, FaYoutubeSquare, Fa
 const Footer = () => {
     return (
         <div>
-            <Container style={{backgroundColor:'black', width: '1500px', height: '60px', borderRadius:'8px 8px 0px 0px'}}>
+            <Container style={{backgroundColor:'black',  height: '60px', borderRadius:'8px 8px 0px 0px', marginTop: '70px'}}>
 
             </Container>
-           <Container style={{backgroundColor: 'lightGray',width:'1500px',height:'auto', borderRadius: '0px', padding:'50px'}}>
+           <Container style={{backgroundColor: 'lightGray',height:'auto', borderRadius: '0px', padding:'50px'}}>
           
       <Row>
         <Col lg={4}>

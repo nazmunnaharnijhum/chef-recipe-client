@@ -1,8 +1,12 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import Banner from './Banner/Banner';
+import './Home.css';
+import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+
 import { useLoaderData, useParams } from 'react-router-dom';
+import Banner from '../Banner/Banner';
 
 const Home = () => {
     const [chefs, setChefs] = useState([]);
@@ -10,12 +14,44 @@ const Home = () => {
     useEffect(() => {
         fetch('http://localhost:5000/chefs')
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => setChefs(data))
         .catch(error => console.error(error))
     }, [])
     return (
+        
         <div>
-            <h2>this is home : </h2>
+           
+            <Row>
+        <Col lg={12}>
+            <Banner></Banner>
+        </Col>
+        
+      </Row>
+        
+            <div className='card-container mx-auto'>
+            {
+               chefs.map(chef => <Container style={{width:''}}
+               key={chef.id}
+               >
+                <Row>
+                    <Col lg={1}></Col>
+                    <Col lg={10}>
+                    <Card style={{ height:'auto', width:'auto' }}>
+      <Card.Img variant="top" src={chef.chef_picture} />
+      <Card.Body>
+        <Card.Title>Chef Name: {chef.chef_name}</Card.Title>
+        <Card.Title>Years of Experience: {chef.years_of_experience}</Card.Title>
+        <Card.Title>Number of Recipes: {chef.numbers_of_recipes}</Card.Title>
+        <Card.Title>Likes: {chef.likes}</Card.Title>
+        <Button variant="secondary">View Recipes</Button>
+      </Card.Body>
+    </Card>
+                    </Col>
+                    <Col lg={1}></Col>
+                </Row>
+               </Container>)
+            }
+        </div>
         </div>
        
     );
