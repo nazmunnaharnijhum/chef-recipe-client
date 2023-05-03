@@ -6,6 +6,8 @@ import ChefCard from "../pages/Home/ChefCard/ChefCard";
 import ChefsLayout from "../layouts/ChefsLayout";
 import Login from "../pages/Login/Login/Login";
 import Register from "../pages/Login/Register/Register";
+import ErrorPage from "../pages/Error/ErrorPage";
+
 
 const router = createBrowserRouter([
     {
@@ -25,9 +27,7 @@ const router = createBrowserRouter([
                 element: <Register></Register>
 
             }
-            
-            
-        ]
+        ],
     },
     {
         path: 'chefs',
@@ -37,8 +37,13 @@ const router = createBrowserRouter([
                 path:':id',
                 element: <ChefCard></ChefCard>,
                 loader: ({params}) => fetch(`http://localhost:5173/chefs/${params.id}`)
-            }
-        ]
+                
+            },
+        ],
+    },
+    {
+        path: '*',
+        element: <ErrorPage></ErrorPage>
     }
 ])
 

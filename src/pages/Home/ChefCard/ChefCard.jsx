@@ -8,9 +8,10 @@ import { useLoaderData, useParams } from 'react-router-dom';
 
 const ChefCard = () => {
   
+  
     const chefs = useLoaderData();
     const {chef_bio,chef_picture} = chefs;
-   
+    
     return (
 
        
