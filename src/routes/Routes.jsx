@@ -4,6 +4,8 @@ import Main from "../layouts/Main";
 import Home from "../pages/Home/Home/Home";
 import ChefCard from "../pages/Home/ChefCard/ChefCard";
 import ChefsLayout from "../layouts/ChefsLayout";
+import Login from "../pages/Login/Login/Login";
+import Register from "../pages/Login/Register/Register";
 
 const router = createBrowserRouter([
     {
@@ -13,6 +15,15 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
+            },
+            {
+                path: 'login',
+                element: <Login></Login>
+            },
+            {
+                path: 'register',
+                element: <Register></Register>
+
             }
             
             
