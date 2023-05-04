@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
+import './Header.css';
 import { Button, Container, Nav, NavDropdown, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';

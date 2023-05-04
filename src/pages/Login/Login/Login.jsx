@@ -11,6 +11,7 @@ import app from '../../../firebase/firebase.config';
 
 
 const Login = () => {
+    const [error, setError] = useState('');
     const [user, setUser] = useState(null);
     const auth = getAuth(app);
 
@@ -24,6 +25,7 @@ const Login = () => {
             const loggedUser = result.user;
             console.log(loggedUser);
             setUser(loggedUser);
+            
         })
         .catch(error => {
             console.log('error', error.message)
@@ -64,9 +66,12 @@ const Login = () => {
         .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser);
+            setError('');
+            form.reset();
         })
         .catch(error => {
-            console.log(error);
+            console.log(error.message);
+            setError(error.message);
         }) 
     }
     return (
@@ -83,7 +88,7 @@ const Login = () => {
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" name='password' placeholder="Password" required/>
       </Form.Group>
-     
+        <p className='text-danger'>{error}</p>
       
       <Button variant="dark" type="submit">
         Login

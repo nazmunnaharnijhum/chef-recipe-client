@@ -1,11 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 
 const Register = () => {
+    const [error, setError] = useState('');
     const {createUser} = useContext(AuthContext);
 
     const handleRegister = event => {
@@ -21,9 +22,12 @@ const Register = () => {
         .then(result => {
             const createdUser = result.user;
             console.log(createdUser);
+            setError('');
+            form.reset();
         })
         .catch(error => {
-            console.log(error);
+            console.log(error.message);
+            setError(error.message);
         })
     }
 
@@ -48,6 +52,7 @@ const Register = () => {
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" name='password' placeholder="Password" required/>
       </Form.Group>
+      <p className='text-danger'>{error}</p>
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" name="accept" label="Accept Terms and Conditions" />
       </Form.Group>
@@ -66,6 +71,7 @@ const Register = () => {
           
         </Form.Text>
     </Form>
+    
         </Container>
     );
 };
