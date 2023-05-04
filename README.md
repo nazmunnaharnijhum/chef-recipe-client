@@ -7,5 +7,5 @@
 <li>View details button which redirects to the details</li>
 <li>README file added</li>
 <li>The website is based on authentication</li>
-<li>Live link: </li>
+<li>Live link: https://chef-recipe-b12eb.web.app/</li>
 </ul>
