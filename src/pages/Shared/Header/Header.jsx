@@ -6,7 +6,13 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 
 const Header = () => {
-    const {user} = useContext(AuthContext);
+    const {user, logOut} = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+        .then()
+        .catch(error => console.log(error));
+    }
     return (
         <div>
 
@@ -22,14 +28,24 @@ const Header = () => {
            
           </Nav>
           <Nav>
-            <NavLink to="/profile">User profile picture</NavLink>
             
-           {user ?
-           <Image src={user.photo} roundedCircle /> :
+            
+           {/* {user ?
+           <Image style={{width:'40px'}} src={user.photoURL
+           } roundedCircle /> : */}
+           <div>
+            { user ?
+            <div>
+                <NavLink>
+           <Button onClick={handleLogOut} variant="secondary">Logout</Button>
+           </NavLink> <Image style={{width:'40px'}} src={user.photoURL} title={user.displayName} roundedCircle />
+            </div>: 
            <NavLink to="/login">
            <Button variant="secondary">Login</Button>
            </NavLink>
-        }
+           }
+           </div>
+       {/* } */}
             
           </Nav>
         </Navbar.Collapse>

@@ -4,5 +4,9 @@ nav a{
 }
 
 .active{
-    color: aqua;
+    color: black;
+    background-color: antiquewhite;
+    padding: 3px;
+    border: 2px solid black;
+    border-radius: 4px;
 }

@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from 'firebase/auth';
@@ -16,6 +16,12 @@ const Login = () => {
     const auth = getAuth(app);
 
     const {signIn} = useContext(AuthContext);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    console.log('login location' ,location)
+    const from = location.state?.from?.pathname || '/'
+
     const GoogleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
 
@@ -66,6 +72,7 @@ const Login = () => {
         .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser);
+            navigate(from, {replace: true})
             setError('');
             form.reset();
         })
@@ -104,10 +111,7 @@ const Login = () => {
       <Button onClick={handleGithubSignIn} className='text-center mb-2' variant="outline-dark"><FaGithub/> GitHub Sign-in</Button>
       </div>
       }
-      
-      <br />
-      
-      
+     
       
       <br />
       <Form.Text className="text-secondary">

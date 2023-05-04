@@ -1,9 +1,21 @@
+/* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import ReactDOM from "react-dom";
+import Pdf from "react-to-pdf";
+
+const ref = React.createRef();
+
+
 
 const Blog = () => {
     return (
-        <div className='mt-5'>
+       <div className='mt-5'>
+        <Pdf targetRef={ref} filename="code-example.pdf">
+        {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+      </Pdf>
+        <div ref={ref}>
+         <div className='mt-5'>
             <h3>Question 1: Tell us the differences between uncontrolled and controlled components.
 </h3>
         <h4>Answer: Controlled components have their state and behavior controlled by the parent component. These components rely on props passed down from the parent component to update their state and behavior. Uncontrolled components manage their own state internally.</h4>
@@ -28,6 +40,8 @@ const Blog = () => {
 
 
         </div>
+       </div>
+       </div>
     );
 };
 
