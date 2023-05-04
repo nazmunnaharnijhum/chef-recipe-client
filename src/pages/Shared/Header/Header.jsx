@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import './Header.css';
 import { Button, Container, Image, Nav, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 
 const Header = () => {
@@ -17,18 +17,18 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Link to="/">Home</Link>
-            <Link to="/blog">Blog</Link>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/blog">Blog</NavLink>
            
           </Nav>
           <Nav>
-            <Link to="/profile">User profile picture</Link>
+            <NavLink to="/profile">User profile picture</NavLink>
             
            {user ?
            <Image src={user.photo} roundedCircle /> :
-           <Link to="/login">
+           <NavLink to="/login">
            <Button variant="secondary">Login</Button>
-           </Link>
+           </NavLink>
         }
             
           </Nav>

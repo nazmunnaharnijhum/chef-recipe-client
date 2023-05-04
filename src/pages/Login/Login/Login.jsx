@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from 'firebase/auth';
@@ -111,7 +111,7 @@ const Login = () => {
       
       <br />
       <Form.Text className="text-secondary">
-         Don't Have an Account? <Link to="/register">Register</Link>
+         Don't Have an Account? <NavLink to="/register">Register</NavLink>
         </Form.Text>
       <Form.Text className="text-success">
           

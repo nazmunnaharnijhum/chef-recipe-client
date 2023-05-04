@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 
@@ -77,7 +77,7 @@ const Register = () => {
       </Button>
       <br />
       <Form.Text className="text-secondary">
-         Already Have an Account? <Link to="/login">Login</Link>
+         Already Have an Account? <NavLink to="/login">Login</NavLink>
         </Form.Text>
       <Form.Text className="text-success">
           
