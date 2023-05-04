@@ -8,6 +8,8 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 
 import { Link, useLoaderData, useParams } from 'react-router-dom';
 import Banner from '../Banner/Banner';
+import ExtraSection1 from '../ExtraSection1/ExtraSection1';
+import ExtraSection2 from '../ExtraSection2/ExtraSection2';
 
 const Home = () => {
     const [chefs, setChefs] = useState([]);
@@ -26,6 +28,12 @@ const Home = () => {
         <Col lg={12}>
             <Banner></Banner>
         </Col>
+        
+      </Row>
+            <Row lg={12}> 
+        
+            <ExtraSection1></ExtraSection1>
+      
         
       </Row>
         
@@ -54,6 +62,12 @@ const Home = () => {
                </Container>)
             }
         </div>
+        <Row>
+        <Col lg={12}>
+            <ExtraSection2></ExtraSection2>
+        </Col>
+        
+      </Row>
         </div>
        
     );

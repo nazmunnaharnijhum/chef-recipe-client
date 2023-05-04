@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import './Header.css';
-import { Button, Container, Nav, NavDropdown, Navbar } from 'react-bootstrap';
+import { Button, Container, Image, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 
@@ -25,7 +25,7 @@ const Header = () => {
             <Link to="/profile">User profile picture</Link>
             
            {user ?
-           <Button variant="secondary">Logout</Button> :
+           <Image src={user.photo} roundedCircle /> :
            <Link to="/login">
            <Button variant="secondary">Login</Button>
            </Link>

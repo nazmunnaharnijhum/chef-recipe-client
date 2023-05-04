@@ -1,9 +1,11 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
+import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
     const [error, setError] = useState('');
@@ -24,9 +26,22 @@ const Register = () => {
             console.log(createdUser);
             setError('');
             form.reset();
+            updateUserData(result.user, name, photo);
         })
         .catch(error => {
             console.log(error.message);
+            setError(error.message);
+        })
+    }
+
+    const updateUserData = (user,name, photo) => {
+        updateProfile(user,{
+            displayName: name ,photoURL:photo
+        })
+        .then(() =>{
+            console.log('user name updated')
+        })
+        .catch(error => {
             setError(error.message);
         })
     }
