@@ -6,7 +6,7 @@ import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup, signOut } from 'firebase/auth';
 import app from '../../../firebase/firebase.config';
 
 
@@ -15,9 +15,11 @@ const Login = () => {
     const auth = getAuth(app);
 
     const {signIn} = useContext(AuthContext);
-    const provider = new GoogleAuthProvider();
+    const GoogleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
+
     const handleGoogleSignIn = () => {
-        signInWithPopup(auth, provider)
+        signInWithPopup(auth, GoogleProvider)
         .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser);
@@ -25,6 +27,29 @@ const Login = () => {
         })
         .catch(error => {
             console.log('error', error.message)
+        })
+    }
+
+    const handleGithubSignIn = () => {
+        signInWithPopup(auth, githubProvider)
+        .then(result => {
+            const loggedInUser = result.user;
+            console.log(loggedInUser);
+            setUser(loggedInUser);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
+    const handleSignOut = () => {
+        signOut(auth)
+        .then(result => {
+            console.log(result);
+            setUser(null);
+        })
+        .catch(error => {
+            console.log(error)
         })
     }
 
@@ -63,10 +88,22 @@ const Login = () => {
       <Button variant="dark" type="submit">
         Login
       </Button>
+      
       <br />
-      <Button onClick={handleGoogleSignIn} className='text-center my-3' variant="outline-dark"><FaGoogle/> Login with Google</Button>
+      { user ?
+        <Button className='my-3' onClick={handleSignOut} variant="dark" type="submit">
+        Sign out
+      </Button> :
+      <div>
+        <Button onClick={handleGoogleSignIn} className='text-center my-3' variant="outline-dark"><FaGoogle/> Google Sign-in</Button>
+      <Button onClick={handleGithubSignIn} className='text-center mb-2' variant="outline-dark"><FaGithub/> GitHub Sign-in</Button>
+      </div>
+      }
+      
       <br />
-      <Button className='text-center mb-2' variant="outline-dark"><FaGithub/> Login with GitHub</Button>
+      
+      
+      
       <br />
       <Form.Text className="text-secondary">
          Don't Have an Account? <Link to="/register">Register</Link>
