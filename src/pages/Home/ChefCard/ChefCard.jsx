@@ -11,9 +11,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '@smastrom/react-rating/style.css'
 
-const notify = () => {
-    toast("The recipe is your favorite");
-}
+
+
 
 // const [btn, setBtn] = useState(false);
 // const disableBtn = () => {
@@ -21,11 +20,28 @@ const notify = () => {
 //     toast("The recipe is your favourite");
 // }
 const ChefCard = () => {
+
   
   
     const chefs = useLoaderData();
     const {chef_bio,chef_picture, chef_name,likes, numbers_of_recipes, years_of_experience, recipes} = chefs;
-    
+    const [btn, setBtn] = useState(false);
+    const [btn2, setBtn2] = useState(false);
+    const [btn3, setBtn3] = useState(false);
+    const notify = () => {
+    setBtn(true);
+    toast("The recipe is your favorite");
+}
+    const notify2 = () => {
+    setBtn2(true);
+    toast("The recipe is your favorite");
+}
+    const notify3 = () => {
+    setBtn3(true);
+    toast("The recipe is your favorite");
+}
+
+
     return (
         <div>
         <Row>
@@ -69,9 +85,11 @@ const ChefCard = () => {
             <Rating style={{ maxWidth: 100 }} value={recipes.rating1} readOnly />
             <p>Rating: {recipes.rating1}</p>
             </div>
-            <Button onClick={notify}
-            
-              variant="outline-secondary">Favourite</Button>
+            {
+                btn ? <Button disabled variant="outline-secondary">Favourite</Button> : 
+                <Button onClick={notify} variant="outline-secondary">Favourite</Button>
+                
+            }
         </div>
         </ListGroup.Item>
         <ListGroup.Item className='d-flex gap-5'>
@@ -84,7 +102,11 @@ const ChefCard = () => {
             <Rating style={{ maxWidth: 100 }} value={recipes.rating2} readOnly />
             <p>Rating: {recipes.rating2}</p>
             </div>
-            <Button onClick={notify} variant="outline-secondary">Favourite</Button>
+            {
+                 btn2 ? <Button disabled variant="outline-secondary">Favourite</Button> : 
+                <Button onClick={notify2} variant="outline-secondary">Favourite</Button>
+            }
+            
         </div>
         </ListGroup.Item>
         <ListGroup.Item className='d-flex gap-5'>
@@ -97,7 +119,10 @@ const ChefCard = () => {
             <Rating style={{ maxWidth: 100 }} value={recipes.rating3} readOnly />
             <p>Rating: {recipes.rating3}</p>
             </div>
-            <Button onClick={notify} variant="outline-secondary">Favourite</Button>
+            {
+                 btn3 ? <Button disabled variant="outline-secondary">Favourite</Button> : 
+                <Button onClick={notify3} variant="outline-secondary">Favourite</Button>
+            }
         </div>
         </ListGroup.Item>
       </ListGroup>
